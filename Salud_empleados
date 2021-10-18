@@ -1,0 +1,361 @@
+
+
+
+
+
+
+
+#datos_empleado = [['345', 'Manuel', 70, 68.0, 1.6, 26.56, 'sobrepeso', 'diabetes', 'hipertension', 'corazon', 'cancer', 'tabaquismo', 'Vacunado', '2'], ['434', 'Cristobal', 34, 75.0, 1.7, 25.95, 'sobrepeso', '-----------', '-----------', '-----------', '-----------', '-----------', '-----------', '7'], ['456', 'John', 90, 650.0, 1.7, 224.91, 'obeso tipo 3', 'diabetes', '-----------', 'corazon', '-----------', 'tabaquismo', '-----------', '34']]
+
+#datos_empleado = [['345', 'mnauel', 89, 80.0, 1.7, 27.68, 'peso normal', 'diabetes', 'hipertension', 'corazon', '-----------', '-----------', '-----------', '235'], ['567', 'cris', 45, 90.0, 1.7, 31.14, 'obesidad', '-----------', '-----------', 'corazon', 'cencer', '-----------', 'Vacunado', '321']]
+datos_empleado = []
+
+#nombre_archivo = "datos_empleado"
+
+
+
+#def leer_archivo(nombre):
+#  joined_string = ",".join(datos_empleado)
+#  with open("archivo_datos.txt", "w") as archivo:
+
+
+#list1 = ['1', '2', '3']
+#str1 = ''.join(list1)
+  
+#a_list = ["a", "b", "c"]
+#joined_string = ",".join(a_list)
+
+#IMC
+delgadez_severa = []
+delgadez_moderada = []
+delgadez_aceptable = []
+peso_normal = []
+sobrepeso = []
+obeso_tipo1 = []
+obeso_tipo2 = []
+obeso_tipo3 = []
+
+#enfermedades
+diabetes_enf = []
+hipertension_enf = []
+corazon_enf = []
+cancer_enf = []
+tabaquismo_enf = []
+vacunado_enf = []
+
+#Se generaron todas las listas a utilizar
+
+#*******************************************************************************************************************************
+#*******************************************************************************************************************************
+
+def actualizar_empleado():
+  buscarid = str(input("ingresa id del empleado: "))
+  count = 0
+  escribir = "s"
+##### Se crea contador porque para buscar se requiere recorrer las listas de listas
+
+  for comparar in range(len(datos_empleado)):
+
+    if buscarid in datos_empleado[count]:  ### Se busca itarae con el contador en todas las listas de listas
+      print(buscarid)
+      print("si esta")
+      print(datos_empleado[count]) #####Cuando lo encuentra lo idnica y pregunta si quiere ingresar datos
+      
+      escribir = input("¿Desea ingresar datos nuevamente")
+      if escribir == "s":
+
+
+          
+        borrar = input("¿Está seguro que desea borrar para ingresar nuevo datos? s para continuar / cualqueir tecla para cancelar")
+        if borrar == "s":
+      ##### abajo borra datos de linea existente
+          del datos_empleado[count]
+          alta_empleado() ###si decide borrar nos manda a la funcion de alta para eficientar el codigo
+
+      else:
+        main()
+        break
+        ###nos manda al menu principal si no quieren modificar
+    else:
+      count = count + 1
+      #### contador para ir iterando en cada elemento
+  print("no existe")
+
+#*********************************************************************************************************************
+#*********************************************************************************************************************  ******************
+
+
+def reporte_IMC_empleados():
+  #titulos = "Clasificacion IMC\t IMC\t id\t Nombre\t            Peso \t Altura\t                            Enfermedades\t          Vacuna\t"
+  #print(titulos)
+    
+
+
+
+  print("")
+  print(f'{"Clasificacion IMC":<20}{"IMC":<7}{"id":<5}{"Nombre":<15}{"Peso":<7}{"Altura":<7}{"Enfermedades":<75}{"Vacuna":<15}')
+  
+  contador = 0
+  #### limitamos con un for en la ongitud total de elemtnos (listas existentes) para saber decirle cuantas veces imprimira datos  
+
+  for base in range(len(datos_empleado)):
+    #          clasif IMC                               IMC                              id                               nombre                             peso                      altura                           diabetes                        hiperten                           cora                          cancer                                tabaq                       vacuna                
+    print(f"{datos_empleado[contador][6]:<20}{datos_empleado[contador][5]:<7}{datos_empleado[contador][0]:<5}{datos_empleado[contador][1]:<15}{datos_empleado[contador][3]:<7}{datos_empleado[contador][4]:<7}{datos_empleado[contador][7]:<15}{datos_empleado[contador][8]:<15}{datos_empleado[contador][9]:<15}{datos_empleado[contador][10]:<15}{datos_empleado[contador][11]:<15}{datos_empleado[contador][12]:<15}")
+    contador = contador + 1     
+    #####con el contador sabe donde detenerse
+
+  print("")
+  print(f'{"":<70}{"Diagnostico":<15}{"Cantidad":<10}{"Porcentaje":<15}')
+  print(f'{"":<70}{"Delgadez severa":<18}{len(delgadez_severa):<10}{round(len(delgadez_severa)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"":<70}{"Delgadez moderada":<18}{len(delgadez_moderada):<10}{round(len(delgadez_moderada)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"":<70}{"Delgadez aceptable":<18}{len(delgadez_aceptable):<10}{round(len(delgadez_aceptable)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"":<70}{"Peso normal":<18}{len(peso_normal):<10}{round(len(peso_normal)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"":<70}{"Sobrepeso":<18}{len(sobrepeso):<10}{round(len(sobrepeso)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"":<70}{"Obeso tipo 1":<18}{len(obeso_tipo1):<10}{round(len(obeso_tipo1)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"":<70}{"Obeso tipo 2":<18}{len(obeso_tipo2):<10}{round(len(obeso_tipo2)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"":<70}{"Obeso tipo 3":<18}{len(obeso_tipo3):<10}{round(len(obeso_tipo3)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"":<70}{"Total de empleados":<20}{len(datos_empleado)}')
+
+
+#*********************************************************************************************************************
+#*********************************************************************************************************************  
+
+
+def consulta_empleado():
+  buscarid = str(input("ingresa id del empleado: "))
+  count = 0
+##### pedimos id y que lo compare buscando una y otra vez
+  for comparar in range(len(datos_empleado)):
+
+    if buscarid in datos_empleado[count]:  
+      print(buscarid)
+      print("si esta")
+      print(datos_empleado[count])
+      #### lo encuentra, imprimimos, y compemos ciclo
+      break
+    else:
+      print(buscarid)
+      print("no esta")  
+      count = count + 1
+      ####si no lo encuntra vuelve a buscar
+def salir():
+  print("Salir")
+  
+  
+
+#*********************************************************************************************************************
+#*********************************************************************************************************************
+
+
+def alta_empleado():
+  IMC = float(0)
+
+
+
+  id = str(input("Ingresa ID de empleado"))
+  nombre = str(input("Ingresa nombre de empleado"))
+  edad = int(input("ingresa edad del empleado"))
+  peso = float(input("ingresa peso del empleado"))
+  estatura = float(input("ingresa estatura del empleado"))
+  IMC = peso / estatura ** 2
+  IMC = round(IMC,2)
+  ###En el alta misma decidi calcular IMC para guardarlo en directo con sus datos de empleado
+  if IMC < 16:
+    
+    print("delgadez severa")
+    IMCdes = "delgadez severa"
+    delgadez_severa.append([1])
+  elif IMC < 17 and IMC >= 16:
+    
+    print("delgadez moderada")
+    IMCdes = "delgadez moderada"
+    delgadez_moderada.append([1])
+  elif IMC <= 18.49 and IMC >= 17:
+    
+    print("delgadez aceptable")
+    IMCdes = "delgadez aceptable"
+    delgadez_aceptable.append([1])
+
+  elif IMC <= 24.99 and IMC >= 18.5:
+    
+    print("peso normal")
+    IMCdes = "peso normal"
+    peso_normal.append([1])
+  
+  elif IMC <= 29.99 and IMC >= 25:
+    
+    print("sobrepeso")
+    IMCdes = "sobrepeso"
+    sobrepeso.append([1])
+  elif IMC <= 34.99 and IMC >= 30:
+    
+    print("obeso tipo 1")
+    IMCdes = "obeso tipo 1"
+    obeso_tipo1.append([1])
+
+  elif IMC <= 39.99 and IMC >= 35:
+    
+    print("obeso tipo 2")
+    IMCdes = "obeso tipo 2"
+    obeso_tipo2.append([1])
+  elif IMC >= 40:
+    
+    print("obeso tipo 3")
+    IMCdes = "obeso tipo 3"
+    obeso_tipo3.append([1])
+
+  else:
+    
+    print("No existe una descripcion")
+    IMCdes = "No existe una descripcion"
+  print(IMC)
+
+  ####Tambien decidi que en cada una de las enfermedades las iria guardando para que ya aparecieran con sus datos
+  #---------------------------------------------------------------------------------------
+  diabetes = int(input("¿el empleado tiene diabetes? 1. si ó 0. no"))
+  if diabetes == 1:
+    diabetes = str("diabetes")
+    diabetes_enf.append([1])
+  elif diabetes == 0:
+    diabetes = str("-----------")
+  else:
+    print("Ingrese 1 o 0")
+
+  #---------------------------------------------------------------------------------------
+  hipertension = int(input("ingresa si el empleado padece hipertension 1. si ó 0. no"))
+  if hipertension == 1:
+    hipertension = str("hipertension")
+    hipertension_enf.append([1])
+  elif hipertension == 0:
+    hipertension = str("-----------")
+  else:
+    print("Ingrese 1 o 0")
+
+  #---------------------------------------------------------------------------------------
+  corazon = int(input("ingresa si el empleado padece del corazon 1. si ó 0. no"))
+  if corazon == 1:
+    corazon = str("corazon")
+    corazon_enf.append([1])
+  elif corazon == 0:
+    corazon = str("-----------")
+  else:
+    print("Ingrese 1 o 0")
+  
+  #---------------------------------------------------------------------------------------
+  cancer = int(input("ingresa si el empelado padece cancer 1. si ó 0. no"))
+  if cancer == 1:
+    cancer = str("cancer")
+    cancer_enf.append([1])
+  elif cancer == 0:
+    cancer = str("-----------")
+  else:
+    print("Ingrese 1 o 0")
+  
+  #---------------------------------------------------------------------------------------
+  tabaquismo = int(input("ingresa si el empleado padece tabaquismo 1. si ó 0. no"))
+  if tabaquismo == 1:
+    tabaquismo = str("tabaquismo")
+    tabaquismo_enf.append([1])
+  elif tabaquismo == 0:
+    tabaquismo = str("-----------")
+  else:
+    print("Ingrese 1 o 0")
+
+  #---------------------------------------------------------------------------------------
+  covidvac = int(input("ingresa si el empleado esta vacunado contra covid 1. si ó 0. no"))
+  
+  if covidvac == 1:
+    covidvac = str("Vacunado")
+    vacunado_enf.append([1])
+  elif covidvac == 0:
+    covidvac = str("-----------")
+  else:
+    print("Ingrese 1 o 0")
+  #---------------------------------------------------------------------------------------
+  departamento = str(input("ingresa numero de departamento"))
+  
+  datos_empleado.append([id,nombre,edad,peso,estatura,IMC,IMCdes,diabetes,hipertension,corazon,cancer,tabaquismo,covidvac,departamento])
+  ####esta linea guarda datos con append al final de la lista
+  
+
+  print(datos_empleado)
+  print("Se ingresaron los siguientes datos: ")
+  print(id,",", nombre,",", edad,",", peso,",", estatura,",",IMC,",",IMCdes,",", diabetes,",", hipertension,",", corazon,",", cancer,",", tabaquismo,",", covidvac,",", departamento)
+
+#******************************************************************************************************************
+#**************************************************************************************************************************
+
+def reporte_empleados():
+
+
+
+ # titulos = "Numero Nombre\t Clasificacion IMC\t Peso\t id\t             Peso \t Altura\t                            Enfermedades\t          Vacuna\t"
+ # print(titulos)
+  print("")
+  print(f'{"Numero":7}{"Nombre":20}{"Peso":<7}{"Estatura":15}{"Enfermedades":<75}{"Vacuna Covid":<10}')
+  contador = 0
+
+
+  for base in range(len(datos_empleado)):
+    #            numero.                    nombre                     peso.                                 estatura                           diabetes                     hiperten                        cora                         cancer                            tabaq                                  vacuna                
+    print(f"{contador+1:<7}{datos_empleado[contador][1]:<20}{datos_empleado[contador][2]:<7}{datos_empleado[contador][4]:<15}{datos_empleado[contador][7]:<15}{datos_empleado[contador][8]:<15}{datos_empleado[contador][9]:<15}{datos_empleado[contador][10]:<15}{datos_empleado[contador][11]:<15}{datos_empleado[contador][12]:<20}")
+    contador = contador + 1  
+
+
+  print("")
+  print(f'{"Enfermedad":<15}{"Cantidad":<10}{"Porcentaje":<15}')
+  print(f'{"Diabetes":<18}{len(diabetes_enf):<10}{round(len(diabetes_enf)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"Hipertension":<18}{len(hipertension_enf):<10}{round(len(hipertension_enf)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"Corazon":<18}{len(corazon_enf):<10}{round(len(corazon_enf)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"Cancer":<18}{len(cancer_enf):<10}{round(len(cancer_enf)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"Tabaquismo":<18}{len(tabaquismo_enf):<10}{round(len(tabaquismo_enf)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"Vacunados":<18}{len(vacunado_enf):<10}{round(len(vacunado_enf)/len(datos_empleado)*100,2)}{"%"}')
+  print(f'{"Total de empleados":<20}{len(datos_empleado)}')
+
+
+
+
+#******************************************************************************************************************
+#**************************************************************************************************************************
+
+
+def menu():
+ print("menu")
+  #prof! esta funcion la encontré redundante, ya que está contemplada en la main.
+  #no consideré necesario usarla, pues igual despliega el menu
+  #pero bueno me dice si hay tema, el programa funciona al 100
+  
+#******************************************************************************************************************
+#**************************************************************************************************************************
+def main():
+  
+  ###el main, tal cual se usa un while TRUE porque queremos que siga dando vueltas el ciclo y que el programa siga vivo hasta que acabemos
+  while True:
+    seleccion = 0
+    print("""
+    Sistema de Salud y Bienestar del Empleado
+    1. Alta de empleado 
+    2. Reporte IMC empleados
+    3. Cambia información del empleado
+    4. Consulta un empleado
+    5. Reporte de todos los empleados
+    6. Salir""")
+    seleccion = int(input("Teclea opcion: "))
+    
+
+    if seleccion > 6 or seleccion < 1:
+      print("opcion incorrecta") 
+    elif seleccion == 1:
+      alta_empleado()
+    elif seleccion == 2:
+      reporte_IMC_empleados()
+    elif seleccion == 3:
+      actualizar_empleado()
+    elif seleccion == 4:
+      consulta_empleado()
+    elif seleccion == 5:
+      reporte_empleados()
+    elif seleccion == 6:
+      salir() 
+      break
+main() ####esta funcion es la que corremos por default para que inicie desde cero el programa con el main y este vivo.
